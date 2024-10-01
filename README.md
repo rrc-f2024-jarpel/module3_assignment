@@ -10,3 +10,6 @@ Jared W. Pelletier
 Module 3 Logic And Loops
 Create a virtual ATM for PiXELL River customers to interact with
 
+## bank_transactions.py
+    This is a program so that customers can easily
+    manage their bank transactions, such as withdrawl and deposit

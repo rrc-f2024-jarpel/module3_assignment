@@ -12,24 +12,56 @@ transactionOptions = {"D","W","Q"}
 #to see if the value input is in this list
 currentBankBalance = float(random.randrange(-1000,10000))
 
-#Text that will be used
+#Text that will be used multiple times.
 textBorder = "****************************************"
-interfaceLine1 = "ATM Simulator"
-interfaceLine2 = f"Your current balance is: ${currentBankBalance:,.2f}"
-interfaceLine3 = "Deposit: D"
-interfaceLine4 = "Withdrawl: W"
-interfaceLine5 = "Quit: D"
-invalidSelection = "INVALID SELECTION"
-#Maybe change these to be more clear?
-#Finish the rest of the script incase the potential names conflict
+#Interface Lines
+title = "ATM Simulator"
+currentBalanceText = f"Your current balance is: ${currentBankBalance:,.2f}"
+depositOption = "Deposit: D"
+withdrawlOption = "Withdrawl: W"
+quitOption = "Quit: Q"
+
+#Other Lines
+enterSelection = "Enter your selection: "
+enterAmmount = "Enter amount of transaction: "
+
 #Main Interface
-printInterface = [textBorder,interfaceLine1,interfaceLine2,interfaceLine3,interfaceLine4,interfaceLine5,textBorder]
+printInterface = [textBorder,title,currentBalanceText,depositOption,withdrawlOption,quitOption,textBorder]
 
 #Invalid Selection
-printInvalidSelection = [textBorder, invalidSelection, textBorder]
+printInvalidSelection = [textBorder, "INVALID SELECTION", textBorder]
+
+#Insuffiect Funds
+printInsufficientFunds = [textBorder, "INSUFFICIENT FUNDS", textBorder]
+
 
 #print user interface
 for line in printInterface:
     print(line.center(40))
 
+userSelection = input(enterSelection).upper()
+if userSelection not in transactionOptions:
+    for line in printInvalidSelection:
+        print(line.center(40))
+else:
+    if userSelection == "D":
+        desiredDepositAmount = float(input(enterAmmount))
+        currentBankBalance += desiredDepositAmount
+        printCurrentBalance = [textBorder, f"Your current balance is: ${currentBankBalance:,.2f}", textBorder]
+        for line in printCurrentBalance:
+            print(line.center(40))
 
+    elif userSelection == "W":
+        desiredWithdrawlAmount = float(input(enterAmmount))
+        if desiredWithdrawlAmount > currentBankBalance:
+            for line in printInvalidSelection:
+                print(line.center(40))
+        else:
+            currentBankBalance -= desiredWithdrawlAmount
+            printCurrentBalance = [textBorder, f"Your current balance is: ${currentBankBalance:,.2f}", textBorder]
+            for line in printCurrentBalance:
+                print(line.center(40))
+    elif userSelection == "Q":
+        printCurrentBalance = [textBorder, f"Your current balance is: ${currentBankBalance:,.2f}", textBorder]
+        for line in printCurrentBalance:
+            print(line.center(40))

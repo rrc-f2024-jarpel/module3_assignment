@@ -17,24 +17,24 @@ transactionOptions = {"D","W","Q"}
 currentBankBalance = float(random.randrange(-1000,10000))
 
 ##Text that will be used multiple times, but do not change
-textBorder = "****************************************"
+TEXT_BORDER = "****************************************"
 
 #Interface Lines
-companyName = "PIXELL RIVER FINANCIAL"
-title = "ATM Simulator"
-depositOption = "Deposit: D"
-withdrawlOption = "Withdrawl: W"
-quitOption = "Quit: Q"
+COMPANY_NAME = "PIXELL RIVER FINANCIAL"
+TITLE = "ATM Simulator"
+DEPOSIT_OPTION = "Deposit: D"
+WITHDRAWL_OPTION = "Withdrawl: W"
+QUIT_OPTION = "Quit: Q"
 
 #Other Lines
-enterSelection = "Enter your selection: "
-enterAmmount = "Enter amount of transaction: "
+ENTER_SELECTION = "Enter your selection: "
+ENTER_AMOUNT = "Enter amount of transaction: "
 
 #Invalid Selection
-printInvalidSelection = [textBorder, "INVALID SELECTION", textBorder]
+printInvalidSelection = [TEXT_BORDER, "INVALID SELECTION", TEXT_BORDER]
 
 #Insuffiect Funds
-printInsufficientFunds = [textBorder, "INSUFFICIENT FUNDS", textBorder]
+printInsufficientFunds = [TEXT_BORDER, "INSUFFICIENT FUNDS", TEXT_BORDER]
 
 #Clears screen before first display
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -47,7 +47,7 @@ while running == True:
     desiredWithdrawlAmount = 0
 
     #Update interface so it displays the correct values
-    printInterface = [textBorder,companyName,title,f"Your current balance is: ${currentBankBalance:,.2f}",depositOption,withdrawlOption,quitOption,textBorder]
+    printInterface = [TEXT_BORDER,COMPANY_NAME,TITLE,f"Your current balance is: ${currentBankBalance:,.2f}",DEPOSIT_OPTION,WITHDRAWL_OPTION,QUIT_OPTION,TEXT_BORDER]
     
     #print user interface
     for line in printInterface:
@@ -56,7 +56,7 @@ while running == True:
     #This while loop is for when the user inputs a wrong selection, it will re-prompt them for an answer
     prompting = True
     while prompting == True: 
-        userSelection = input(enterSelection).upper()
+        userSelection = input(ENTER_SELECTION).upper()
         #Check to see if selection is valid
         if userSelection not in transactionOptions: 
             for line in printInvalidSelection:
@@ -67,11 +67,11 @@ while running == True:
             #Deposit Cash
             if userSelection == "D":
                 #Take input -> convert to float -> add to currentBankBalance
-                desiredDepositAmount = float(input(enterAmmount))
+                desiredDepositAmount = float(input(ENTER_AMOUNT))
                 currentBankBalance += desiredDepositAmount
                 
                 #Print updated interface
-                printCurrentBalance = [textBorder, f"Your current balance is: ${currentBankBalance:,.2f}", textBorder]
+                printCurrentBalance = [TEXT_BORDER, f"Your current balance is: ${currentBankBalance:,.2f}", TEXT_BORDER]
                 for line in printCurrentBalance:
                     print(line.center(40))
                 
@@ -83,7 +83,7 @@ while running == True:
             #Withdrawl Cash
             elif userSelection == "W":
                 #Take input, convert to float
-                desiredWithdrawlAmount = float(input(enterAmmount))
+                desiredWithdrawlAmount = float(input(ENTER_AMOUNT))
 
                 #Check to see if desired withdrawl is possible
                 if desiredWithdrawlAmount > currentBankBalance:
@@ -92,7 +92,7 @@ while running == True:
                         print(line.center(40))
                     
                     #Then remind them of what thier current balance is
-                    printCurrentBalance = [textBorder, f"Your current balance is: ${currentBankBalance:,.2f}", textBorder]
+                    printCurrentBalance = [TEXT_BORDER, f"Your current balance is: ${currentBankBalance:,.2f}", TEXT_BORDER]
                     for line in printCurrentBalance:
                         print(line.center(40))
 
@@ -107,7 +107,7 @@ while running == True:
                     currentBankBalance -= desiredWithdrawlAmount
 
                     #Print current balance with updated values
-                    printCurrentBalance = [textBorder, f"Your current balance is: ${currentBankBalance:,.2f}", textBorder]
+                    printCurrentBalance = [TEXT_BORDER, f"Your current balance is: ${currentBankBalance:,.2f}", TEXT_BORDER]
                     for line in printCurrentBalance:
                         print(line.center(40))
                     
@@ -119,7 +119,7 @@ while running == True:
             #If user selects the Quit option
             elif userSelection == "Q":
                 #Display balance
-                printCurrentBalance = [textBorder, f"Your current balance is: ${currentBankBalance:,.2f}", textBorder]
+                printCurrentBalance = [TEXT_BORDER, f"Your current balance is: ${currentBankBalance:,.2f}", TEXT_BORDER]
                 for line in printCurrentBalance:
                     print(line.center(40))
 

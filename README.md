@@ -15,4 +15,4 @@ Create a virtual ATM for PiXELL River customers to interact with
     manage their bank transactions, such as withdrawl and deposit
 
 ## interest_update.py
-    Allows VP to apply interest to multiple accounts based on their current balance
+    Allows the VP Client Services to apply interest to multiple accounts based on their current balance

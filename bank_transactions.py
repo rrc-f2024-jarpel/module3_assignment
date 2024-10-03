@@ -15,6 +15,7 @@ currentBankBalance = float(random.randrange(-1000,10000))
 #Text that will be used multiple times.
 textBorder = "****************************************"
 #Interface Lines
+companyName = "PIXELL RIVER FINANCIAL"
 title = "ATM Simulator"
 depositOption = "Deposit: D"
 withdrawlOption = "Withdrawl: W"
@@ -33,7 +34,7 @@ while running == True:
     desiredDepositAmount = 0
     desiredWithdrawlAmount = 0
     #Update interface so it displays the correct values
-    printInterface = [textBorder,title,f"Your current balance is: ${currentBankBalance:,.2f}",depositOption,withdrawlOption,quitOption,textBorder]
+    printInterface = [textBorder,companyName,title,f"Your current balance is: ${currentBankBalance:,.2f}",depositOption,withdrawlOption,quitOption,textBorder]
     #print user interface
     for line in printInterface:
         print(line.center(40))
@@ -76,6 +77,5 @@ while running == True:
                 printCurrentBalance = [textBorder, f"Your current balance is: ${currentBankBalance:,.2f}", textBorder]
                 for line in printCurrentBalance:
                     print(line.center(40))
-                sleep(3)
                 prompting = False #Need to stop prompting user otherwise the second loop never stops
                 running = False   #Exit loop, thus exiting the program

@@ -8,12 +8,33 @@ Date:
 """
 #This is for debuggig purposes, remove later if needed
 from pprint import pprint
-
-
+import csv
+#Create dict
 accountBalances = {}
+#Create from file
 with open("account_balances.txt", "r") as accountDetails:
     for line in accountDetails:
         key, value = line.strip().split("|")
         accountBalances[key] = float(value)
-
+#Test print to see if it is reading correct values
 pprint(accountBalances)
+
+#Iterate through lines and modify their values according to their coresponding rates
+for line in accountBalances:
+    if accountBalances[line] >= 5000: #Interest rate of 5.0
+        accountBalances[line] = accountBalances[line] + ((accountBalances[line] * 0.05) /12)
+    elif accountBalances[line] >=1000: #Interest rate of 1.0
+        accountBalances[line] = accountBalances[line] + ((accountBalances[line] * 0.025) /12)
+    elif accountBalances[line] > 0: #Interest rate of 2.5
+        accountBalances[line] = accountBalances[line] + ((accountBalances[line] * 0.01) /12)
+    elif accountBalances[line] < 0: #Interest rate of 10
+        accountBalances[line] = accountBalances[line] + ((accountBalances[line] * 0.1) /12)
+#Test print to see if the values have beed modified
+pprint(accountBalances)
+
+fieldNames = ["Account", "Balance"]
+with open("updated_balances_JP.csv", "w", newline='') as file:
+    writer = csv.DictWriter(file, fieldnames=fieldNames) #Set header
+    writer.writeheader()
+    for account, balance in accountBalances.items(): #Write to the csv file
+        writer.writerow({'Account': account, 'Balance': balance})
